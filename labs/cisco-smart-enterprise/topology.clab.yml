@@ -1,0 +1,34 @@
+name: cisco-smart-enterprise
+topology:
+  nodes:
+    r1:
+      kind: linux
+      image: frrouting/frr:latest
+      cmd: /sbin/init
+
+    sales:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+
+    ops:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+
+    it:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+
+    mgmt:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+
+    web:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+
+  links:
+    - endpoints: ["r1:eth1", "sales:eth1"]
+    - endpoints: ["r1:eth2", "ops:eth1"]
+    - endpoints: ["r1:eth3", "it:eth1"]
+    - endpoints: ["r1:eth4", "mgmt:eth1"]
+    - endpoints: ["r1:eth5", "web:eth1"]
